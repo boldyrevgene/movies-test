@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+
+import { Movie } from '../../types';
 
 @Component({
   selector: 'app-movie-list',
@@ -6,6 +9,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./movie-list.component.scss']
 })
 export class MovieListComponent implements OnInit {
+
+  @Input()
+  movies: Movie[] = [];
 
   constructor() { }
 

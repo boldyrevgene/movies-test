@@ -1,0 +1,11 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  app-movie-card {
+    width: 32%;
+    margin-bottom: 20px;
+  }
+}

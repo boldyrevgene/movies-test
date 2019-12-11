@@ -1,4 +1,14 @@
 <mat-form-field class="search-field">
-  <input type="text" matInput>
-<!--  [formControl]="myControl" [matAutocomplete]="auto">-->
+  <input #search type="text" matInput placeholder="Movie title" [formControl]="searchControl"
+         (keyup)="handleEnterKey($event)">
+  <!--  [formControl]="myControl" [matAutocomplete]="auto">-->
+  <button *ngIf="!searchControl.value" mat-button matSuffix mat-icon-button (click)="search.focus()">
+    <mat-icon>search</mat-icon>
+  </button>
+  <button *ngIf="searchControl.value" class="clear-btn" mat-button matSuffix mat-icon-button aria-label="Clear"
+          (click)="clear()">
+    <mat-icon>close</mat-icon>
+  </button>
 </mat-form-field>
+
+<app-movie-list *ngIf="searchResult && searchResult.Search" [movies]="searchResult.Search"></app-movie-list>

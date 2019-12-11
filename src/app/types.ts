@@ -29,4 +29,9 @@ export interface Movie {
   Production: string;
 }
 
+export interface SearchResult {
+  Search: Movie[];
+  totalResults: number;
+}
+
 export type MoviesDictionary = Record<string, Movie>;

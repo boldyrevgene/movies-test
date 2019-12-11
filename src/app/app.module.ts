@@ -2,8 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 import {
   MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
   MatIconModule,
   MatInputModule,
   MatListModule,
@@ -39,12 +42,15 @@ import { MovieService } from './movie.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatIconModule,
     MatListModule,
     MatSidenavModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule,
+    MatButtonToggleModule
   ],
   providers: [
     {

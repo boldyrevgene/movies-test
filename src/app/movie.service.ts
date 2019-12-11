@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
-import { Movie } from './types';
+import { Movie, SearchResult } from './types';
 
 
 @Injectable({
@@ -11,13 +11,30 @@ import { Movie } from './types';
 })
 export class MovieService {
 
-  constructor(private http: HttpClient, private apiKey: string) { console.log(this.apiKey); }
+  constructor(private http: HttpClient, private apiKey: string) { }
 
-  search(query: string): Observable<Movie[]> {
-    return null;
+  search(query: string, page: number = 1): Observable<SearchResult> {
+
+    const params = new HttpParams({
+      fromObject: {
+        apikey: this.apiKey,
+        s: query,
+        page: '' + page
+      }
+    });
+
+    return this.http.get('http://www.omdbapi.com', {params}) as Observable<SearchResult>;
   }
 
   getMovie(id: string): Observable<Movie> {
     return null;
+  }
+
+  isFavorite(movie: Movie): boolean {
+    return false;
+  }
+
+  setAsFavorite(movie: Movie, isFavorite: boolean): void {
+
   }
 }

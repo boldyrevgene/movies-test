@@ -2,7 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 
-import { FavoritesComponent, SearchPageComponent } from './components';
+import {
+  FavoritesComponent,
+  MovieDetailsComponent,
+  SearchPageComponent
+} from './components';
 
 
 const routes: Routes = [
@@ -18,6 +22,10 @@ const routes: Routes = [
   {
     path: 'search',
     component: SearchPageComponent
+  },
+  {
+    path: 'details/:id',
+    component: MovieDetailsComponent
   }
 ];
 
