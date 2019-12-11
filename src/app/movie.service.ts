@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 
 import { Movie } from './types';
-import { Observable } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class MovieServiceService {
+export class MovieService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private apiKey: string) { console.log(this.apiKey); }
 
-  search(title: string): Observable<Movie[]> {
+  search(query: string): Observable<Movie[]> {
     return null;
   }
 

@@ -1,3 +1,5 @@
+import { InjectionToken } from '@angular/core';
+
 export interface MovieRating {
   Source: string;
   Value: string;
@@ -28,5 +30,3 @@ export interface Movie {
 }
 
 export type MoviesDictionary = Record<string, Movie>;
-
-
