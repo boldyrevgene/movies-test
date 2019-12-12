@@ -18,7 +18,7 @@
 </mat-paginator>
 
 <app-movie-list [movies]="searchResult?.Search">
-  <p><a routerLink="" (click)="search.focus()">Enter move title </a> to find some movies.</p>
+  <p><button mat-flat-button (click)="search.focus()">Enter move title</button> to find some movies.</p>
 </app-movie-list>
 
 <mat-paginator *ngIf="searchResult && searchResult.totalResults > 10"

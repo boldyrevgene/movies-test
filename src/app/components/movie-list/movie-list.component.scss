@@ -1,8 +1,14 @@
 :host {
+  width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+
+  &.empty {
+    justify-content: center;
+    align-items: center;
+  }
 
   app-movie-card {
     width: 32%;

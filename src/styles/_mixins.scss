@@ -1,5 +1,6 @@
 @mixin page {
   padding: 15px;
   width: calc(100% - 30px);
-  display: block;
+  min-height: calc(100% - 30px);
+  display: flex;
 }

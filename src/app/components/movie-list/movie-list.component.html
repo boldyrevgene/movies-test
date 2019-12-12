@@ -1,1 +1,7 @@
-<app-movie-card *ngFor="let movie of movies" [movie]="movie"></app-movie-card>
+<ng-container *ngIf="movies && movies.length; else emptyState">
+  <app-movie-card *ngFor="let movie of movies" [movie]="movie"></app-movie-card>
+</ng-container>
+
+<ng-template #emptyState>
+  <ng-content></ng-content>
+</ng-template>

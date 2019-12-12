@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
 
 
 import { Movie } from '../../types';
@@ -13,7 +13,13 @@ export class MovieListComponent implements OnInit {
   @Input()
   movies: Movie[] = [];
 
-  constructor() { }
+  @HostBinding('class.empty')
+  get isEmpty(): boolean {
+    return !this.movies || !this.movies.length;
+  }
+
+  constructor() {
+  }
 
   ngOnInit() {
   }

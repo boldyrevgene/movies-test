@@ -3,6 +3,9 @@
 :host {
   @include page;
 
+  flex-direction: column;
+
+
   .search-field {
     width: 100%;
 
