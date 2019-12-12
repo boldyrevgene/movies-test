@@ -8,4 +8,16 @@
     width: 32%;
     margin-bottom: 20px;
   }
+
+  @media (max-width: 768px) {
+    app-movie-card {
+      width: 48%;
+    }
+  }
+
+  @media (max-width: 576px) {
+    app-movie-card {
+      width: 100%;
+    }
+  }
 }
