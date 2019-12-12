@@ -21,4 +21,37 @@
 
 <div *ngIf="movie" class="movie-extras">
 
+  <table class="mat-table">
+    <tbody>
+    <tr class="mat-row">
+      <td class="mat-cell">Genre</td>
+      <td class="mat-cell">{{ movie.Genre }}</td>
+    </tr>
+    <tr class="mat-row">
+      <td class="mat-cell">Country</td>
+      <td class="mat-cell">{{ movie.Country }}</td>
+    </tr>
+    <tr class="mat-row">
+      <td class="mat-cell">Rated</td>
+      <td class="mat-cell">{{ movie.Rated }}</td>
+    </tr>
+    <tr class="mat-row">
+      <td class="mat-cell">Runtime</td>
+      <td class="mat-cell">{{ movie.Runtime }}</td>
+    </tr>
+    <tr class="mat-row">
+      <td class="mat-cell">Director</td>
+      <td class="mat-cell">{{ movie.Director }}</td>
+    </tr>
+    <tr class="mat-row">
+      <td class="mat-cell">Writers</td>
+      <td class="mat-cell">{{ movie.Writer }}</td>
+    </tr>
+    <tr class="mat-row">
+      <td class="mat-cell">Actors</td>
+      <td class="mat-cell">{{ movie.Actors }}</td>
+    </tr>
+    </tbody>
+  </table>
+
 </div>

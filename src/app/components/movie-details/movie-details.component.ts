@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 
 import { MovieService } from '../../movie.service';
-import { Subscription } from 'rxjs';
 import { Movie } from '../../types';
 
 @Component({

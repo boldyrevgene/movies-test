@@ -3,25 +3,33 @@
 :host {
   @include page;
 
-  .movie-info {
-    display: flex;
+  .movie {
+    &-info {
+      display: flex;
+      margin-bottom: 20px;
 
-    &-image {
-      margin-right: 20px;
-    }
-
-    &-main {
-
-      .ratings {
-        display: flex;
-
-        .mat-card {
-          margin-right: 8px;
-        }
+      &-image {
+        margin-right: 20px;
       }
 
+      &-main {
+
+        .ratings {
+          display: flex;
+
+          .mat-card {
+            margin-right: 8px;
+          }
+        }
+
+      }
     }
 
+    &-extras {
+      tbody {
+        display: block;
+      }
+    }
   }
 
   @media (max-width: 768px) {
@@ -53,4 +61,26 @@
       }
     }
   }
+}
+
+.mat-table {
+  display: block;
+  font-family: Tahoma, Verdana;
+}
+
+.mat-row,
+.mat-header-row {
+  display: flex;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 24px;
+}
+
+.mat-cell,
+.mat-header-cell {
+  flex: 1;
+  overflow: hidden;
+  word-wrap: break-word;
 }
