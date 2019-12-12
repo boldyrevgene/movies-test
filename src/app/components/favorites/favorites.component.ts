@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+
+import { MovieService } from '../../movie.service';
+import { Movie } from '../../types';
+
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
@@ -7,9 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FavoritesComponent implements OnInit {
 
-  constructor() { }
+  favorites: Movie[] = [];
+
+  constructor(private movieService: MovieService) { }
 
   ngOnInit() {
+    this.favorites = this.movieService.getFavorites();
   }
 
 }

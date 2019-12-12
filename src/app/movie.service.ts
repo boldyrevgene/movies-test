@@ -19,6 +19,10 @@ export class MovieService {
     this.favorites = this.loadFavorites();
   }
 
+  getFavorites(): Movie[] {
+    return Object.values(this.favorites);
+  }
+
   search(query: string, page: number = 1): Observable<SearchResult> {
 
     const params = new HttpParams({
