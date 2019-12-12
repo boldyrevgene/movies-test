@@ -23,12 +23,12 @@ export class MovieService {
     return Object.values(this.favorites);
   }
 
-  search(query: string, page: number = 1): Observable<SearchResult> {
+  search(query: string, page: string = '1'): Observable<SearchResult> {
 
     const params = new HttpParams({
       fromObject: {
         s: query,
-        page: '' + page
+        page
       }
     });
 

@@ -11,4 +11,18 @@
   </button>
 </mat-form-field>
 
-<app-movie-list *ngIf="searchResult && searchResult.Search" [movies]="searchResult.Search"></app-movie-list>
+<mat-paginator *ngIf="searchResult && searchResult.totalResults > 10"
+               [length]="searchResult.totalResults"
+               [pageSize]="10"
+               (page)="goToPage($event.pageIndex + 1)">
+</mat-paginator>
+
+<app-movie-list [movies]="searchResult?.Search">
+  <p><a routerLink="" (click)="search.focus()">Enter move title </a> to find some movies.</p>
+</app-movie-list>
+
+<mat-paginator *ngIf="searchResult && searchResult.totalResults > 10"
+               [length]="searchResult.totalResults"
+               [pageSize]="10"
+               (page)="goToPage($event.pageIndex + 1)">
+</mat-paginator>

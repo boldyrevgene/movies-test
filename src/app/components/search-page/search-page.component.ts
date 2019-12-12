@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 
@@ -18,14 +19,25 @@ export class SearchPageComponent implements OnInit, OnDestroy {
 
   searchResult: SearchResult;
 
+  private page = '1';
+
   private subscription: Subscription;
 
-  constructor(private moveService: MovieService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private moveService: MovieService) {
+  }
 
   ngOnInit() {
-    this.subscription = this.searchControl.valueChanges
-      .subscribe((value) => {
-
+    this.subscription = this.route.paramMap
+      .subscribe(params => {
+        if (params.has('query')) {
+          this.searchControl.setValue(decodeURIComponent(params.get('query')));
+        }
+        const page = params.get('page');
+        if (!page) {
+          return;
+        }
+        this.page = page;
+        this.search();
       });
   }
 
@@ -41,11 +53,19 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     if (event.key !== 'Enter' || this.searchControl.value.length < 3) {
       return;
     }
-    this.search();
+
+    this.router.navigate(['/search', 1, encodeURIComponent(this.searchControl.value)]);
+  }
+
+  goToPage(page): void {
+    this.router.navigate(['/search', page, encodeURIComponent(this.searchControl.value)]);
   }
 
   private search(): void {
-    this.moveService.search(this.searchControl.value)
+    if (!this.searchControl.value || this.searchControl.value.length < 3) {
+      return;
+    }
+    this.moveService.search(this.searchControl.value, this.page)
       .subscribe(response => this.searchResult = response);
   }
 }

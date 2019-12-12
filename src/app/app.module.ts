@@ -10,6 +10,7 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
+  MatPaginatorModule,
   MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
@@ -50,7 +51,8 @@ import { MovieService } from './movie.service';
     MatButtonModule,
     MatInputModule,
     MatCardModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatPaginatorModule
   ],
   providers: [
     {

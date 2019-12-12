@@ -21,6 +21,15 @@ const routes: Routes = [
   },
   {
     path: 'search',
+    pathMatch: 'full',
+    redirectTo: 'search/1/'
+  },
+  {
+    path: 'search/:page',
+    component: SearchPageComponent
+  },
+  {
+    path: 'search/:page/:query',
     component: SearchPageComponent
   },
   {
