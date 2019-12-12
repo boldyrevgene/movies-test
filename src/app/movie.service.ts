@@ -36,9 +36,9 @@ export class MovieService {
   }
 
   getMovie(id: string): Observable<Movie> {
-    if (this.favorites.hasOwnProperty(id)) {
-      return of(this.favorites[id]);
-    }
+    // if (this.favorites.hasOwnProperty(id)) {
+    //   return of(this.favorites[id]);
+    // }
 
     const params = (new HttpParams()).append('i', id);
     return this.makeRequest(params);

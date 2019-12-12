@@ -2,4 +2,55 @@
 
 :host {
   @include page;
+
+  .movie-info {
+    display: flex;
+
+    &-image {
+      margin-right: 20px;
+    }
+
+    &-main {
+
+      .ratings {
+        display: flex;
+
+        .mat-card {
+          margin-right: 8px;
+        }
+      }
+
+    }
+
+  }
+
+  @media (max-width: 768px) {
+
+    .movie-info-main {
+      .ratings {
+        display: block;
+
+        .mat-card {
+          margin-right: 0;
+          margin-bottom: 8px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+
+    .movie-info {
+      display: block;
+
+      &-image {
+
+        margin: 0;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
 }

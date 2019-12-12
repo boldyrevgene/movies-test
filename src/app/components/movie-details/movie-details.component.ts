@@ -28,7 +28,6 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
           return;
         }
         this.handleMove(params.get('id'));
-        console.log(this.movie);
       });
   }
 
@@ -37,12 +36,12 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   }
 
   private handleMove(movieId) {
-    const movie = history.state.movie as Movie;
-
-    if (movie && movie.imdbID === movieId) {
-      this.movie = movie;
-      return;
-    }
+    // const movie = history.state.movie as Movie;
+    //
+    // if (movie && movie.imdbID === movieId) {
+    //   this.movie = movie;
+    //   return;
+    // }
 
     this.movieService.getMovie(movieId)
       .subscribe(response => this.movie = response);

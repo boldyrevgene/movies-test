@@ -1,1 +1,24 @@
-<p>movie-details works!</p>
+<div class="movie-info" *ngIf="movie">
+
+  <div class="movie-info-image">
+    <img [src]="movie.Poster" [alt]="movie.Title">
+  </div>
+
+  <div class="movie-info-main">
+    <h2>{{ movie.Title }} ({{ movie.Year }})</h2>
+
+    <div class="ratings">
+
+      <mat-card *ngFor="let rating of movie.Ratings">{{ rating.Source }} : {{ rating.Value }}</mat-card>
+
+    </div>
+
+    <p>{{ movie.Plot }}</p>
+
+  </div>
+
+</div>
+
+<div *ngIf="movie" class="movie-extras">
+
+</div>
