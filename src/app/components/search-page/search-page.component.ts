@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { skipUntil } from 'rxjs/operators';
 
 
 import { MovieService } from '../../movie.service';
@@ -14,20 +15,22 @@ import { SearchResult } from '../../types';
 })
 export class SearchPageComponent implements OnInit, OnDestroy {
 
-
   searchControl = new FormControl();
+
+  autoOptions: Set<string> = new Set();
 
   searchResult: SearchResult;
 
   private page = '1';
 
-  private subscription: Subscription;
+  private paramsSub: Subscription;
+  private querySub: Subscription;
 
   constructor(private router: Router, private route: ActivatedRoute, private moveService: MovieService) {
   }
 
   ngOnInit() {
-    this.subscription = this.route.paramMap
+    this.paramsSub = this.route.paramMap
       .subscribe(params => {
         if (params.has('query')) {
           this.searchControl.setValue(decodeURIComponent(params.get('query')));
@@ -39,22 +42,39 @@ export class SearchPageComponent implements OnInit, OnDestroy {
         this.page = page;
         this.search();
       });
+
+    this.querySub = this.searchControl.valueChanges
+      .subscribe(value => {
+        if (value && value.trim().length >= 3) {
+          this.moveService.search(value)
+            .subscribe(response => {
+              if (response.Search) {
+                this.autoOptions = new Set(
+                  response.Search
+                    .map(movie => movie.Title)
+                    .filter(title => title.toLowerCase().includes(value.toLowerCase()))
+                );
+              } else {
+                this.autoOptions = new Set();
+              }
+            });
+        } else {
+          this.autoOptions = new Set();
+        }
+      });
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.paramsSub.unsubscribe();
+    this.querySub.unsubscribe();
   }
 
   clear(): void {
     this.searchControl.setValue('');
   }
 
-  handleEnterKey(event: KeyboardEvent): void {
-    if (event.key !== 'Enter' || this.searchControl.value.length < 3) {
-      return;
-    }
-
-    this.router.navigate(['/search', 1, encodeURIComponent(this.searchControl.value)]);
+  handleSelection(title): void {
+    this.router.navigate(['/search', 1, encodeURIComponent(title)]);
   }
 
   goToPage(page): void {
@@ -62,6 +82,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   }
 
   private search(): void {
+    this.autoOptions = new Set();
     if (!this.searchControl.value || this.searchControl.value.length < 3) {
       return;
     }

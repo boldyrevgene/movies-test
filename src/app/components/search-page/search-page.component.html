@@ -1,14 +1,20 @@
 <mat-form-field class="search-field">
-  <input #search type="text" matInput placeholder="Movie title" [formControl]="searchControl"
-         (keyup)="handleEnterKey($event)">
-  <!--  [formControl]="myControl" [matAutocomplete]="auto">-->
-  <button *ngIf="!searchControl.value" mat-button matSuffix mat-icon-button (click)="search.focus()">
-    <mat-icon>search</mat-icon>
-  </button>
+  <input #search type="text" matInput placeholder="Movie title"
+         [formControl]="searchControl" [matAutocomplete]="auto">
+
   <button *ngIf="searchControl.value" class="clear-btn" mat-button matSuffix mat-icon-button aria-label="Clear"
           (click)="clear()">
     <mat-icon>close</mat-icon>
   </button>
+  <button mat-button matSuffix mat-icon-button (click)="handleSelection(searchControl.value);">
+    <mat-icon>search</mat-icon>
+  </button>
+
+  <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption (optionSelected)="handleSelection($event.option.value)">
+    <mat-option *ngFor="let option of autoOptions" [value]="option"
+                [innerHTML]="option | highlightText:searchControl.value:'highlighted'">
+    </mat-option>
+  </mat-autocomplete>
 </mat-form-field>
 
 <mat-paginator *ngIf="searchResult && searchResult.totalResults > 10"
@@ -18,7 +24,10 @@
 </mat-paginator>
 
 <app-movie-list [movies]="searchResult?.Search">
-  <p><button mat-flat-button (click)="search.focus()">Enter move title</button> to find some movies.</p>
+  <p>
+    <button mat-flat-button (click)="search.focus()">Enter move title</button>
+    to find some movies.
+  </p>
 </app-movie-list>
 
 <mat-paginator *ngIf="searchResult && searchResult.totalResults > 10"

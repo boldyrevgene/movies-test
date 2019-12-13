@@ -3,6 +3,8 @@
 :host {
   @include page;
 
+  flex-direction: column;
+
   .movie {
     &-info {
       display: flex;
