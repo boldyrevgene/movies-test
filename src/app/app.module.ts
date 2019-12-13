@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
+  MatAutocompleteModule,
   MatButtonModule,
   MatButtonToggleModule,
   MatCardModule,
@@ -27,6 +28,7 @@ import {
   SearchPageComponent
 } from './components';
 import { MovieService } from './movie.service';
+import { HighlightTextPipe } from './highlight-text.pipe';
 
 
 @NgModule({
@@ -36,7 +38,8 @@ import { MovieService } from './movie.service';
     SearchPageComponent,
     FavoritesComponent,
     MovieListComponent,
-    MovieCardComponent
+    MovieCardComponent,
+    HighlightTextPipe
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,8 @@ import { MovieService } from './movie.service';
     MatInputModule,
     MatCardModule,
     MatButtonToggleModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatAutocompleteModule
   ],
   providers: [
     {
