@@ -62,7 +62,7 @@ import { HighlightTextPipe } from './highlight-text.pipe';
     {
       provide: MovieService,
       deps: [HttpClient],
-      useFactory: (http: HttpClient) => new MovieService(http, environment.apiKey)
+      useFactory: (http: HttpClient) => new MovieService(http, environment.apiBase, environment.apiKey)
     }
   ],
   bootstrap: [AppComponent]

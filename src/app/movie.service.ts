@@ -15,7 +15,7 @@ export class MovieService {
 
   private readonly favorites: MoviesDictionary;
 
-  constructor(private http: HttpClient, private apiKey: string) {
+  constructor(private http: HttpClient, private apiBase: string, private apiKey: string) {
     this.favorites = this.loadFavorites();
   }
 
@@ -36,10 +36,6 @@ export class MovieService {
   }
 
   getMovie(id: string): Observable<Movie> {
-    // if (this.favorites.hasOwnProperty(id)) {
-    //   return of(this.favorites[id]);
-    // }
-
     const params = (new HttpParams()).append('i', id);
     return this.makeRequest(params);
   }
@@ -62,7 +58,7 @@ export class MovieService {
 
   private makeRequest(params: HttpParams): Observable<any> {
     return this.http.get(
-      'http://www.omdbapi.com',
+      this.apiBase,
       {params: params.append('apikey', this.apiKey)}
     );
   }

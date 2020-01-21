@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  apiBase: 'http://www.omdbapi.com',
   apiKey: 'dd7c5f50'
 };
 
